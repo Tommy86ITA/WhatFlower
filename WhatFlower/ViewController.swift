@@ -9,16 +9,30 @@
 import UIKit
 import Vision
 import CoreML
+import Alamofire
+import SwiftyJSON
+
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let imagePicker = UIImagePickerController()
     
+    
+    //Linked outlets
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var infoTextView: UITextView!
+    
+    
+    //Networking constants
+    let wikipediaURL = "https://en.wikipedia.org/w/api.php"
+    
+    
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
+        //imagePicker Setup
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
         imagePicker.allowsEditing = true
@@ -51,14 +65,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let request = VNCoreMLRequest(model: model) { (request, error) in
             
-            guard let results = request.results as? [VNClassificationObservation] else { fatalError("Model failed to process image.")}
+            guard let classification = request.results?.first as? VNClassificationObservation else { fatalError("Model failed to process image.")}
             
-            if let firstResult = results.first {
-                
-                self.navigationItem.title = firstResult.identifier.capitalized
-                print(firstResult.confidence)
+            self.navigationItem.title = classification.identifier.capitalized
+            self.getInfoFromWikipedia(url: self.wikipediaURL, flowerName: classification.identifier)
+            //print(firstResult.confidence)
             
-            }
+            
         }
         
         let handler = VNImageRequestHandler(ciImage: image)
@@ -69,9 +82,58 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    //MARK: - Networking
+    
+    func getInfoFromWikipedia(url: String, flowerName: String) {
+        
+        let queryParameters : [String:String] = [
+            "format" : "json",
+            "action" : "query",
+            "prop" : "extracts",
+            "exintro" : "",
+            "explaintext" : "",
+            "titles" : flowerName,
+            "indexpageids" : "",
+            "redirects" : "1",
+            ]
+        
+        Alamofire.request(url, method: .get, parameters: queryParameters).responseJSON {
+            (response) in
+            
+            if response.result.isSuccess {
+                print("Data received")
+                
+                let wikipediaJSON : JSON = JSON(response.result.value!)
+                print(wikipediaJSON)
+                self.JSONParser(json: wikipediaJSON)
+                
+            }
+                
+            else {
+                print("Error retrieving data")
+                self.infoTextView.text = "I'm sorry, but I can't retrieve data from Wikipedia 😔"
+            }
+        }
+        
+    }
+    
+    
+    
+    //MARK: - JSON parser
+    
+    func JSONParser(json: JSON) {
+        
+        let pageID = json["query"]["pageids"][0].stringValue
+        let flowerDescription = json["query"]["pages"][pageID]["extract"].stringValue
+
+            infoTextView.text = flowerDescription
+        print(flowerDescription)
+
+    }
     
     
     @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
+        
         
         present(imagePicker, animated: true, completion: nil)
     }

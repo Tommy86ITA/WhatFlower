@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,12 +19,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U7s-cg-d05">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U7s-cg-d05">
+                                <rect key="frame" x="0.0" y="64" width="375" height="375"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="U7s-cg-d05" secondAttribute="height" multiplier="1:1" id="cpI-6e-b3E"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="eo9-86-YmJ"/>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IUY-m4-jAg">
+                                <rect key="frame" x="8" y="447" width="359" height="210"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="210" id="vnL-fu-z8f"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="IUY-m4-jAg" firstAttribute="centerX" secondItem="U7s-cg-d05" secondAttribute="centerX" id="2iA-Ge-PNy"/>
+                            <constraint firstItem="IUY-m4-jAg" firstAttribute="top" secondItem="U7s-cg-d05" secondAttribute="bottom" constant="8" id="4h9-xq-eXh"/>
+                            <constraint firstItem="IUY-m4-jAg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="KQb-aB-ylR"/>
+                            <constraint firstItem="IUY-m4-jAg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QHr-iK-8xa"/>
+                            <constraint firstItem="IUY-m4-jAg" firstAttribute="top" secondItem="U7s-cg-d05" secondAttribute="bottom" constant="8" symbolic="YES" id="Wkq-nL-9ug"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IUY-m4-jAg" secondAttribute="trailing" constant="8" id="Www-bX-unb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IUY-m4-jAg" secondAttribute="bottom" constant="10" id="YuI-6a-GcV"/>
+                            <constraint firstItem="IUY-m4-jAg" firstAttribute="top" secondItem="U7s-cg-d05" secondAttribute="bottom" constant="8" id="gn7-SR-Lry"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IUY-m4-jAg" secondAttribute="trailing" constant="8" id="loA-hB-uoc"/>
+                            <constraint firstItem="U7s-cg-d05" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mIZ-yS-giG"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="Uoa-cP-m0d">
@@ -35,6 +60,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="U7s-cg-d05" id="bzm-SW-ftv"/>
+                        <outlet property="infoTextView" destination="IUY-m4-jAg" id="172-6d-k6h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
