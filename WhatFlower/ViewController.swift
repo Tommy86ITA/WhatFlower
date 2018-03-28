@@ -12,6 +12,7 @@ import CoreML
 import Alamofire
 import SwiftyJSON
 import SDWebImage
+import ChameleonFramework
 
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -27,7 +28,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //Networking constants
     let wikipediaURL = "https://en.wikipedia.org/w/api.php"
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barTintColor = HexColor("1A2C47")
+        view.backgroundColor = HexColor("5565AD")
+        //5565AD
+    }
     
     override func viewDidLoad() {
         
@@ -35,7 +40,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         //imagePicker Setup
         imagePicker.delegate = self
-        imagePicker.sourceType = .camera
         imagePicker.allowsEditing = true
         
     }
@@ -70,8 +74,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
             self.navigationItem.title = classification.identifier.capitalized
             self.getInfoFromWikipedia(url: self.wikipediaURL, flowerName: classification.identifier)
-            //print(firstResult.confidence)
-            
             
         }
         
@@ -82,6 +84,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             print("Error performing request")
         }
     }
+    
     
     //MARK: - Networking
     
@@ -97,7 +100,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             "indexpageids" : "",
             "redirects" : "1",
             "pithumbsize" : "500"
-            ]
+        ]
         
         Alamofire.request(url, method: .get, parameters: queryParameters).responseJSON {
             (response) in
@@ -127,21 +130,46 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let pageID = json["query"]["pageids"][0].stringValue
         let flowerDescription = json["query"]["pages"][pageID]["extract"].stringValue
-
-            infoTextView.text = flowerDescription
+        
+        
         
         let flowerImageURL = json["query"]["pages"][pageID]["thumbnail"]["source"].stringValue
-        imageView.sd_setImage(with: URL(string: flowerImageURL))
+        
+        
+        imageView.sd_setImage(with: URL(string: flowerImageURL)) { (uiimage, _, _, _) in
+            let imageColor = UIColor(averageColorFrom: uiimage!)
+            self.navigationController?.navigationBar.barTintColor = imageColor
+            self.navigationController?.navigationBar.tintColor = ContrastColorOf(imageColor, returnFlat: true)
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : ContrastColorOf(imageColor, returnFlat: true)]
+            self.view.backgroundColor = imageColor.lighten(byPercentage: 0.2)
+            
+            self.infoTextView.textColor = ContrastColorOf(imageColor, returnFlat: true)
+        }
+        infoTextView.isHidden = false
+        infoTextView.text = flowerDescription
         print(flowerDescription)
-
     }
+    
+    //MARK: - UI Updater
     
     
     @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
         
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        present(imagePicker, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "Fotocamera", style: .default , handler: { _ in
+            self.imagePicker.sourceType = .camera
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Libreria foto", style: .default, handler: { _ in
+            self.imagePicker.sourceType = .photoLibrary
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Annulla", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
 }
-

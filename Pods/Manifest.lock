@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (4.6.0)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
   - SDWebImage (4.3.0):
     - SDWebImage/Core (= 4.3.0)
   - SDWebImage/Core (4.3.0)
@@ -7,14 +10,25 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - SDWebImage
   - SwiftyJSON
 
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: 6dd284bde21ea2e7f9fd89bc36f40df16e16369d
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: a182f36f6f7262b0786bfaec07c79de2c47c55a3
+PODFILE CHECKSUM: 58a5612a7ca4422ff6717a07edcbd41c988cc055
 
 COCOAPODS: 1.4.0

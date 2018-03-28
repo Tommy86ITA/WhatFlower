@@ -19,40 +19,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U7s-cg-d05">
-                                <rect key="frame" x="0.0" y="64" width="375" height="375"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="U7s-cg-d05" secondAttribute="height" multiplier="1:1" id="cpI-6e-b3E"/>
-                                </constraints>
-                                <viewLayoutGuide key="safeArea" id="eo9-86-YmJ"/>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IUY-m4-jAg">
-                                <rect key="frame" x="8" y="447" width="359" height="210"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="210" id="vnL-fu-z8f"/>
-                                </constraints>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IUY-m4-jAg">
+                                <rect key="frame" x="18" y="446" width="340" height="210"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U7s-cg-d05">
+                                <rect key="frame" x="0.0" y="64" width="375" height="375"/>
+                                <color key="tintColor" red="0.14250096340000001" green="0.57610484610000001" blue="0.21765827839999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="375" id="1Tp-gP-rq7"/>
+                                    <constraint firstAttribute="width" constant="375" id="33A-7f-lDX"/>
+                                    <constraint firstAttribute="width" secondItem="U7s-cg-d05" secondAttribute="height" multiplier="1:1" id="rgC-Sc-eEa"/>
+                                    <constraint firstAttribute="height" constant="375" id="tdh-cN-Lrt"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="eo9-86-YmJ"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.34927400946617126" green="0.50539803504943848" blue="0.073680244386196136" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="IUY-m4-jAg" firstAttribute="centerX" secondItem="U7s-cg-d05" secondAttribute="centerX" id="2iA-Ge-PNy"/>
-                            <constraint firstItem="IUY-m4-jAg" firstAttribute="top" secondItem="U7s-cg-d05" secondAttribute="bottom" constant="8" id="4h9-xq-eXh"/>
-                            <constraint firstItem="IUY-m4-jAg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="KQb-aB-ylR"/>
-                            <constraint firstItem="IUY-m4-jAg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QHr-iK-8xa"/>
-                            <constraint firstItem="IUY-m4-jAg" firstAttribute="top" secondItem="U7s-cg-d05" secondAttribute="bottom" constant="8" symbolic="YES" id="Wkq-nL-9ug"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IUY-m4-jAg" secondAttribute="trailing" constant="8" id="Www-bX-unb"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IUY-m4-jAg" secondAttribute="bottom" constant="10" id="YuI-6a-GcV"/>
-                            <constraint firstItem="IUY-m4-jAg" firstAttribute="top" secondItem="U7s-cg-d05" secondAttribute="bottom" constant="8" id="gn7-SR-Lry"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IUY-m4-jAg" secondAttribute="trailing" constant="8" id="loA-hB-uoc"/>
-                            <constraint firstItem="U7s-cg-d05" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mIZ-yS-giG"/>
+                            <constraint firstItem="U7s-cg-d05" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9Qw-qk-4Hs"/>
+                            <constraint firstItem="U7s-cg-d05" firstAttribute="centerX" secondItem="IUY-m4-jAg" secondAttribute="centerX" id="9hQ-E2-IuT"/>
+                            <constraint firstItem="IUY-m4-jAg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="18" id="DOg-xF-XHp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IUY-m4-jAg" secondAttribute="trailing" constant="17" id="dvP-d1-mz5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IUY-m4-jAg" secondAttribute="bottom" constant="11" id="jSt-WI-Rhg"/>
+                            <constraint firstItem="U7s-cg-d05" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="uRw-pT-O4w"/>
+                            <constraint firstItem="IUY-m4-jAg" firstAttribute="top" secondItem="U7s-cg-d05" secondAttribute="bottom" constant="7" id="xeJ-T7-fFs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="Uoa-cP-m0d">
                         <barButtonItem key="rightBarButtonItem" systemItem="camera" id="Euj-ML-NUd" userLabel="cameraButton">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="cameraTapped:" destination="BYZ-38-t0r" id="Kwe-6W-nWo"/>
                             </connections>

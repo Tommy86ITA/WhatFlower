@@ -10,5 +10,5 @@ target 'WhatFlower' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'SDWebImage'
-
+  pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 end
